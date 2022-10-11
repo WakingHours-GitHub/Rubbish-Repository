@@ -1,6 +1,7 @@
 """
 http://172.17.100.10:801/eportal/portal/login?callback=dr1003&login_method=1&user_account=201923020986&user_password=FWJ%4015246337585&wlan_user_ip=10.100.214.141&wlan_user_ipv6=&wlan_user_mac=90ccdfd07a82&wlan_ac_ip=&wlan_ac_name=me60&jsVersion=4.1&terminal_type=1&lang=zh-cn&v=5154&lang=zh
 """
+import time
 import requests
 from fake_useragent import UserAgent
 import socket # 使用自带的socket库
@@ -43,7 +44,11 @@ params = {
 headers = {
     "User-Agent": UserAgent().chrome
 }
-
-resp = requests.get(url, headers=headers, params=params)
+while True:
+    resp = requests.get(url, headers=headers, params=params)
+    print(resp.text)
+    time.sleep(1)
+    # break
+    # resp = requests.get(url, headers=headers, params=params)
 
 print(resp.text)
